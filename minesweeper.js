@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
+/*var board = {
   cells: [
     { row: 1,   col: 1, isMine: true,   hidden: true },
     { row: 1,   col: 2, isMine: false,  hidden: true },
@@ -13,7 +13,8 @@ var board = {
     { row: 3,   col: 2, isMine: false,  hidden: true },
     { row: 3,   col: 3, isMine: false,  hidden: true }
   ]
-}
+}*/
+var board = generateNewBoard(5);
 
 // function that generates new blank board
 function generateNewBoard (rows) {
@@ -26,11 +27,13 @@ function generateNewBoard (rows) {
       board.cells.push( { row: i, col: j, isMine: true, isMarked: false, hidden: true } );
     };
   }
+  return board;
   console.log(board);
 
 }
-generateNewBoard(5);
+
 function startGame () {
+ 
   // Don't remove this function call: it makes the game work!
   document.addEventListener('click', checkForWin);
   document.addEventListener('contextMenu', checkForWin);
