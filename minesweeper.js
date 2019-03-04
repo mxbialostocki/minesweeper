@@ -14,6 +14,7 @@ var board = {
     { row: 3,   col: 3, isMine: false,  hidden: true }
   ]
 }
+
 // function that generates new blank board
 function generateNewBoard (rows) {
   var board = {
@@ -28,7 +29,7 @@ function generateNewBoard (rows) {
   console.log(board);
 
 }
-
+generateNewBoard(5);
 function startGame () {
   // Don't remove this function call: it makes the game work!
   document.addEventListener('click', checkForWin);
@@ -39,8 +40,6 @@ function startGame () {
   };
   
   lib.initBoard();
-
-  
 }
 
 // Define this function to look for a win condition:
@@ -82,13 +81,4 @@ function countSurroundingMines (cell) {
     }
   });
   return mines;
-}
-
-function addCell = {
-  var newCell = {
-    row: 0,
-    column: 0,
-    isMine: true,
-    isMarked: false,
-    hidden: true,
 }
