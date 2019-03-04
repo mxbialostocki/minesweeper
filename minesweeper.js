@@ -17,14 +17,12 @@ var board = {
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
-  board.cells.forEach(cell => {
-    cell.surroundingMines = function () {
-      for (i = 0; i < board.cells.length; i++) {
-        countSurroundingMines(board.cells[i])
-      }
-    }
-  }); 
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
+  }
   lib.initBoard()
+
+  
 }
 
 // Define this function to look for a win condition:
@@ -32,13 +30,7 @@ function startGame () {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin () {
-  /*for (i = 0; i < cells.length; i++) {
-    if (cells[i].isMine == false && cells[i].hidden == false) {
-      if (cells[i].isMine == true && cells[i].hidden == true) {
-
-      }
-
-    }*/
+  
     lib.displayMessage('You win!')
 
   }
