@@ -14,6 +14,20 @@ var board = {
     { row: 3,   col: 3, isMine: false,  hidden: true }
   ]
 }
+// function that generates new blank board
+function generateNewBoard (rows) {
+  var board = {
+    cells: []
+  };
+  // function takes arguments to determine row . col
+  for (i = 1; i <= rows; i++) {
+    for (j = 1; j <= rows; j++) {
+      board.cells.push( { row: i, col: j, isMine: true, isMarked: false, hidden: true } );
+    };
+  }
+  console.log(board);
+
+}
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
@@ -70,3 +84,11 @@ function countSurroundingMines (cell) {
   return mines;
 }
 
+function addCell = {
+  var newCell = {
+    row: 0,
+    column: 0,
+    isMine: true,
+    isMarked: false,
+    hidden: true,
+}
