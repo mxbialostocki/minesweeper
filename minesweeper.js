@@ -51,7 +51,7 @@ function generateNewBoard (rows, bombs) {
   
   let totalCells = board.cells.length;
   var totalBombsPlaced = 0;
-  while (totalBombsPlaced < bombs) { 
+  while (totalBombsPlaced <= bombs) { 
     let x = Math.floor(Math.random() * totalCells);
     
 
