@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', startGame)
     { row: 1,   col: 1, isMine: true,   hidden: true },
     { row: 1,   col: 2, isMine: false,  hidden: true },
     { row: 1,   col: 3, isMine: true,   hidden: true },
-    { row: 2,   col: 1, isMine: false,  hidden: true },
+    { row: 2,   col: 1, is-Mine: false,  hidden: true },
     { row: 2,   col: 2, isMine: false,  hidden: true },
     { row: 2,   col: 3, isMine: false,  hidden: true },
     { row: 3,   col: 1, isMine: false,  hidden: true },
@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', startGame)
     { row: 3,   col: 3, isMine: false,  hidden: true }
   ]
 }*/
-var board = generateNewBoard(5);
+var board = generateNewBoard(5, 6);
 
 // function that generates new blank board
+/*
 function generateNewBoard (rows) {
   var board = {
     cells: []
@@ -29,8 +30,59 @@ function generateNewBoard (rows) {
   }
   return board;
   console.log(board);
-
 }
+*/
+function generateNewBoard (rows, bombs) {
+  var board = {
+    cells: []
+  };
+  // function takes arguments to determine row . col
+  for (i = 1; i <= rows; i++) {
+    for (j = 1; j <= rows; j++) {
+      board.cells.push( { row: i, col: j, isMine: false, isMarked: false, hidden: true } );
+    };
+
+  }
+  
+  
+  
+  
+  //for (i = 0; i < totalBombsPlaced; i++) {
+  
+  let totalCells = board.cells.length;
+  var totalBombsPlaced = 0;
+  while (totalBombsPlaced < bombs) { 
+    let x = Math.floor(Math.random() * totalCells);
+    
+
+    if (board.cells[x].isMine == false) {
+      board.cells[x].isMine = true;
+    } 
+    if (board.cells[x].isMine == true) {
+      totalBombsPlaced++;
+    }
+  }
+    return board;
+  
+  
+  /*var numberOfBombs = rows;
+  var numberOfBombsPlaced = 0;
+  // write function to generate umber of bombs based on number of rows
+  while (numberOfBombsPlaced < numberOfBombs) {
+    let randomRowIndex = Math.floor(Math.random() * board.cells.row);
+    let randomColumnIndex = Math.floor(Math.random() * board.cells.col);
+    if (board.cells[randomRowIndex][randomColumnIndex].isMine !== false) {
+      board.cells[randomRowIndex][randomColumnIndex].isMine = true;
+      numberOfBombsPlaced++;
+    };*/
+    
+//    board.cells.map(function (board) {
+      
+//      return board;
+//    })
+//  return board;
+};   console.log(board);
+
 
 function startGame () {
  
