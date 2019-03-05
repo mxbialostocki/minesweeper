@@ -16,22 +16,8 @@ document.addEventListener('DOMContentLoaded', startGame)
 }*/
 var board = generateNewBoard(5, 6);
 
-// function that generates new blank board
-/*
-function generateNewBoard (rows) {
-  var board = {
-    cells: []
-  };
-  // function takes arguments to determine row . col
-  for (i = 1; i <= rows; i++) {
-    for (j = 1; j <= rows; j++) {
-      board.cells.push( { row: i, col: j, isMine: true, isMarked: false, hidden: true } );
-    };
-  }
-  return board;
-  console.log(board);
-}
-*/
+// function that generates new board
+
 function generateNewBoard (rows, bombs) {
   var board = {
     cells: []
@@ -44,16 +30,16 @@ function generateNewBoard (rows, bombs) {
 
   }
   
-  
-  
-  
-  //for (i = 0; i < totalBombsPlaced; i++) {
-  
   let totalCells = board.cells.length;
   var totalBombsPlaced = 0;
-  while (totalBombsPlaced <= bombs) { 
-    let x = Math.floor(Math.random() * totalCells);
+  /*debugger;
+  for (i = 0; i < board.cells.length; i++) {
+    totalCells.push([i])
+  }
+    */
+  while (totalBombsPlaced < bombs) { 
     
+    let x = Math.floor(Math.random() * totalCells);//    console.log(x);
 
     if (board.cells[x].isMine == false) {
       board.cells[x].isMine = true;
@@ -61,28 +47,14 @@ function generateNewBoard (rows, bombs) {
     if (board.cells[x].isMine == true) {
       totalBombsPlaced++;
     }
+    if (totalBombsPlaced == bombs) {
+      break;
+    }
   }
     return board;
   
-  
-  /*var numberOfBombs = rows;
-  var numberOfBombsPlaced = 0;
-  // write function to generate umber of bombs based on number of rows
-  while (numberOfBombsPlaced < numberOfBombs) {
-    let randomRowIndex = Math.floor(Math.random() * board.cells.row);
-    let randomColumnIndex = Math.floor(Math.random() * board.cells.col);
-    if (board.cells[randomRowIndex][randomColumnIndex].isMine !== false) {
-      board.cells[randomRowIndex][randomColumnIndex].isMine = true;
-      numberOfBombsPlaced++;
-    };*/
-    
-//    board.cells.map(function (board) {
-      
-//      return board;
-//    })
-//  return board;
-};   console.log(board);
-
+};   
+console.log(board);
 
 function startGame () {
  
@@ -92,8 +64,7 @@ function startGame () {
 
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
-  };
-  
+  };  
   lib.initBoard();
 }
 
@@ -111,9 +82,7 @@ function checkForWin () {
     } 
   }
   lib.displayMessage('You win!');
-} 
-
-  
+}
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
