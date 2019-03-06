@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', startGame)
     { row: 3,   col: 3, isMine: false,  hidden: true }
   ]
 }*/
-var board = generateNewBoard(5, 6);
+var board = generateNewBoard(5);
 
 // function that generates new board
 
-function generateNewBoard (rows, bombs) {
+function generateNewBoard (rows) {
   var board = {
     cells: []
   };
@@ -31,20 +31,15 @@ function generateNewBoard (rows, bombs) {
   }
   
   let totalCells = board.cells.length;
+  var bombs = Math.round(0.20 * totalCells);
   var totalBombsPlaced = 0;
-  /*debugger;
-  for (i = 0; i < board.cells.length; i++) {
-    totalCells.push([i])
-  }
-    */
+
   while (totalBombsPlaced < bombs) { 
     
-    let x = Math.floor(Math.random() * totalCells);//    console.log(x);
+    var x = Math.floor(Math.random() * totalCells);//    console.log(x);
 
     if (board.cells[x].isMine == false) {
       board.cells[x].isMine = true;
-    } 
-    if (board.cells[x].isMine == true) {
       totalBombsPlaced++;
     }
     if (totalBombsPlaced == bombs) {
