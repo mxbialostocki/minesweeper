@@ -42,9 +42,6 @@ function generateNewBoard (rows) {
       board.cells[x].isMine = true;
       totalBombsPlaced++;
     }
-    if (totalBombsPlaced == bombs) {
-      break;
-    }
   }
     return board;
   
