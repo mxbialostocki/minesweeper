@@ -54,14 +54,14 @@ function generateNewBoard (rows) {
 
 
 function startGame () {
- 
+  
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
+  };  
   // Don't remove this function call: it makes the game work!
   document.addEventListener('click', checkForWin);
   document.addEventListener('contextMenu', checkForWin);
 
-  for (var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
-  };  
   lib.initBoard();
 }
 
@@ -69,12 +69,13 @@ function startGame () {
 function checkForWin () {
   var totalCellsPlayed = 0;
   board.cells.forEach(function (currentCell) {
-    if ((currentCell.isMine === true && currentCell.isMarked === true) || (currentCell.isMine === false && currentCell.hidden === false)) {
+    if ((currentCell.isMine && currentCell.isMarked) || (!currentCell.isMine && !currentCell.hidden)) {
       totalCellsPlayed++;
+      if (totalCellsPlayed === board.cells.length) {
+        lib.displayMessage('You win!');
+      }
     }
-    if (totalCellsPlayed === board.cells.length) {
-      lib.displayMessage('You win!');
-    }
+    
   });
 }
 
